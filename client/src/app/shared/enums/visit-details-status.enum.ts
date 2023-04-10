@@ -1,0 +1,6 @@
+export enum Status {
+  PRESENT = 'PRESENT',
+  ABSENT = 'ABSENT',
+  CANCELLED = 'CANCELLED',
+  ABSENT_EMPLOYEE = 'ABSENT_EMPLOYEE',
+}

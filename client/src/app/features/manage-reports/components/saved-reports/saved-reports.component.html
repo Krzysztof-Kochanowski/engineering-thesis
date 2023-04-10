@@ -1,0 +1,19 @@
+<h4 class="header header-margin">{{generalTexts.savedReports}}</h4>
+<mat-list class="report-list">
+  <ng-container *ngIf="reports.length > 0; else noReports;">
+    <mat-list-item class="report-list-item" *ngFor="let report of reports;">
+      <mat-icon matListItemIcon>insert_drive_file</mat-icon>
+      <div class="list-item">
+        <span>{{report}}</span>
+        <button class="download-button" mat-button (click)="downloadReport(report)">
+          <mat-icon class="download-icon">save_alt</mat-icon>
+        </button>
+      </div>
+    </mat-list-item>
+  </ng-container>
+</mat-list>
+
+<ng-template #noReports>
+  <span class="no-content-text">{{generalTexts.noReports}}</span>
+</ng-template>
+

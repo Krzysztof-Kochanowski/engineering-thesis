@@ -1,0 +1,53 @@
+<h4 class="header-margin">{{generalTexts.addVisitForm}}</h4>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>{{generalTexts.date}}</mat-label>
+      <input matInput formControlName="date" [matDatepicker]="$any(picker)"
+             [min]="minDate" [max]="maxDate" (dateInput)="updateSelectedDate($event)">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>{{generalTexts.hour}}</mat-label>
+      <app-time-input formControlName="time" [required]="true" [value]="time"></app-time-input>
+    </mat-form-field>
+  </div>
+  <div class="form-row">
+    <mat-form-field class="fill" appearance="outline">
+      <mat-select formControlName="customer" (selectionChange)="updateSelectedCustomer($event)"
+                  placeholder="{{generalTexts.findCustomer}}*" name="customer">
+        <mat-option>
+          <ngx-mat-select-search
+            [formControl]="customerFilterCtrl"
+            placeholderLabel="{{generalTexts.findResults}}"
+            noEntriesFoundLabel="'{{generalTexts.noResults}}'"
+            [enableClearOnEscapePressed]=true
+          >
+          </ngx-mat-select-search>
+        </mat-option>
+        <mat-option class="search-bar-option" *ngFor="let customer of filteredCustomers | async" [value]="customer">
+          <span>{{customer.firstName}} {{customer.lastName}} {{"&nbsp;&nbsp;&nbsp;"}}</span>
+          <span>{{customer.organizationName}}</span>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="form-row">
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>{{generalTexts.status}}</mat-label>
+      <mat-select formControlName="status" name="status" (selectionChange)="updateSelectedStatus($event)">
+        <mat-option *ngFor="let status of enumTexts.status" [value]="status">
+          {{status.value}}
+        </mat-option>
+        <mat-select-trigger>
+          {{form.controls['status'].value.value}}
+        </mat-select-trigger>
+      </mat-select>
+    </mat-form-field>
+    <button class="form-button" mat-raised-button [disabled]="loading">
+      {{generalTexts.add}}
+    </button>
+  </div>
+</form>
+

@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+  client:
+    container_name: client
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - '${CLIENT_EXTERNAL_PORT}:${CLIENT_INTERNAL_PORT}'
+    environment:
+      NODE_ENV: dev
+  database:
+    container_name: database
+    image: postgres:14.6
+    ports:
+      ['${DB_EXTERNAL_PORT}:${DB_INTERNAL_PORT}']
+    environment:
+      POSTGRES_PASSWORD: '${DB_PASSWORD}'
+      POSTGRES_USER: '${DB_USER}'
+      POSTGRES_DB: '${DB_NAME}'
+      TZ: 'UTC'
+      PGTZ: 'UTC'
+    volumes:
+      - app-data:/var/lib/postgresql/data
+  server:
+    container_name: server
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports: ['${SERVER_EXTERNAL_PORT}:${SERVER_INTERNAL_PORT}']
+    env_file: ./server/.env
+
+volumes:
+  app-data:
+        

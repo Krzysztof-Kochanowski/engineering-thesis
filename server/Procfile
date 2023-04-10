@@ -1,0 +1,1 @@
+web: java -jar -XX:TieredStopAtLevel=1 -noverify -Dserver.port=$PORT -Dspring.profiles.active=prod -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dfile.encoding=UTF-8 $JAVA_OPTS target/app-server.jar com.app.server.ServerApplication

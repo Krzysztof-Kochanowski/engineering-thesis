@@ -1,0 +1,27 @@
+<h4 class="header-margin">{{generalTexts.addSheetForm}}</h4>
+<form class="half-width search-part" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>{{generalTexts.selectDateRange}}</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate formControlName="startDate" (dateInput)="updateSelectedStartDate($event)">
+        <input matEndDate formControlName="endDate" (dateInput)="updateSelectedEndDate($event)">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+  </div>
+  <div class="form-row">
+    <mat-form-field class="half-width" appearance="outline">
+      <input type="text" formControlName="excelFile" matInput [placeholder]=generalTexts.fileNotChosen [value]="fileName" [readonly]=true>
+    </mat-form-field>
+    <div class="sub-row">
+      <button class="form-button" type="button" mat-raised-button (click)="fileInput.click()">
+        {{generalTexts.pickFile}}
+      </button>
+      <input class="ng-hide" type="file" style="display:none" #fileInput
+             (change)="handleFileInput($any($event.target).files)">
+      <button class="form-button" type="submit" mat-raised-button [disabled]="loading">{{generalTexts.import}}</button>
+    </div>
+  </div>
+</form>

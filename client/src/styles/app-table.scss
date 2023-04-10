@@ -1,0 +1,42 @@
+@import "./theme-variables";
+@import "../styles";
+
+table {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+}
+
+.grey {
+  background-color: #f5f5f5 !important;
+}
+
+.activeRow {
+  background-color: $accent !important;
+}
+
+mat-row, mat-header-row {
+  min-height: 38px !important;
+}
+
+.mat-mdc-header-cell {
+  font-size: 16px;
+  border-bottom: 1px solid grey;
+  justify-content: left;
+  text-align: center;
+  margin-top: 5px;
+  padding: 8px 16px;
+}
+
+.mat-mdc-cell {
+  @extend .standard-font-size;
+  padding: 6px 16px;
+  justify-content: left;
+}
+
+::ng-deep table > thead {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}

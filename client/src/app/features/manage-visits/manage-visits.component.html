@@ -1,0 +1,20 @@
+<div class="feature-container-wrapper">
+  <div class="feature-container">
+    <div class="container left">
+      <mat-card class="container-card left">
+        <app-tab-menu (byDateChange)="updateSelectedDate($event)"></app-tab-menu>
+        <app-visit-table class="section" [visits]="visits" [selectedRow]="selectedTableRow"
+                         (byVisitSelect)="updateSelectedVisitTime($event.time, $event.row)"></app-visit-table>
+      </mat-card>
+    </div>
+    <div class="container right">
+      <mat-card class="container-card right">
+        <h3 *ngIf="employee">{{generalTexts.employee}}: {{employee.firstName}} {{employee.lastName}} {{employee.username}}</h3>
+        <app-add-visit-details-form class="section form" [time]="formVisitTime" [date]="formVisitDate"
+                                    (bySubmit)="refreshVisits()"></app-add-visit-details-form>
+        <app-visit-details class="section" [time]="visitDetailsTime" [visits]="visits"
+                           (byUpdate)="refreshVisits()"></app-visit-details>
+      </mat-card>
+    </div>
+  </div>
+</div>

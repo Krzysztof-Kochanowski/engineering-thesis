@@ -1,0 +1,9 @@
+<ng-container *ngIf="employeeAbsences.length > 0; else noAbsences;">
+  <mat-accordion>
+    <app-employee-absences-item *ngFor="let employeeAbsence of employeeAbsences" [absence]="employeeAbsence"></app-employee-absences-item>
+  </mat-accordion>
+</ng-container>
+
+<ng-template #noAbsences>
+  <span class="no-content-text">{{generalTexts.noAbsences}}</span>
+</ng-template>

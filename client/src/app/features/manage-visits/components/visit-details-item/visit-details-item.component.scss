@@ -1,0 +1,28 @@
+@import "../../../../../styles/app-expansion-panel";
+
+.comment-field {
+  margin-top: 5px;
+  width: 100%;
+}
+
+.expansion-panel {
+  ::ng-deep {
+    .mat-content > {
+      :nth-child(1) {
+        flex-grow: 8;
+      }
+
+      :nth-child(2) {
+        flex-grow: 3;
+      }
+
+      :nth-child(3) {
+        flex-grow: 3;
+      }
+
+      :nth-child(4) {
+        flex-grow: 1;
+      }
+    }
+  }
+}

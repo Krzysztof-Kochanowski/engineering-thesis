@@ -1,0 +1,38 @@
+<h4 class="header-margin">{{generalTexts.addCustomerAbsenceForm}}</h4>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>{{generalTexts.selectDateRange}}</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate formControlName="startDate" (dateInput)="updateSelectedStartDate($event)">
+        <input matEndDate formControlName="endDate" (dateInput)="updateSelectedEndDate($event)">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+  </div>
+  <div class="form-row">
+    <mat-form-field class="search-bar" appearance="outline">
+      <mat-select formControlName="customer" (selectionChange)="updateSelectedCustomer($event)"
+                  placeholder="{{generalTexts.findCustomer}}" name="customer">
+        <mat-option>
+          <ngx-mat-select-search
+            [formControl]="customerFilterCtrl"
+            placeholderLabel="{{generalTexts.findResults}}"
+            noEntriesFoundLabel="{{generalTexts.noResults}}"
+            [enableClearOnEscapePressed]=true
+          >
+          </ngx-mat-select-search>
+        </mat-option>
+        <mat-option class="search-bar-option" *ngFor="let customer of filteredCustomers | async" [value]="customer">
+          <span>{{customer.firstName}} {{customer.lastName}} {{"&nbsp;&nbsp;&nbsp;"}}</span>
+          <span>{{customer.organizationName}}</span>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button class="form-button" mat-raised-button [disabled]="loading">
+      {{generalTexts.add}}
+    </button>
+  </div>
+</form>
+

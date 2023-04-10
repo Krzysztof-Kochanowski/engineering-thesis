@@ -1,0 +1,46 @@
+@use '@angular/material' as mat;
+
+// Accent palette
+$app-accent-palette: (
+  50: #fffdf0,
+  100: #fffbda,
+  200: #fff9c2,
+  300: #fff6a9,
+  400: #fff496,
+  500: #fff284,
+  600: #fff07c,
+  700: #ffee71,
+  800: #ffec67,
+  900: #ffe854,
+  A100: #ffffff,
+  A200: #ffffff,
+  A400: #fffef9,
+  A700: #fffbe0,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000
+  )
+);
+
+
+// Theme palettes
+$primary-palette: mat.define-palette(mat.$indigo-palette, 500);
+$accent-palette: mat.define-palette($app-accent-palette);
+$warn-palette: mat.define-palette(mat.$red-palette, A100);
+
+// Theme colors
+$primary: mat.get-color-from-palette($primary-palette);
+$accent: mat.get-color-from-palette($accent-palette);
+$warn: mat.get-color-from-palette($warn-palette);

@@ -1,0 +1,31 @@
+<span class="header standard-margin-right">{{generalTexts.filters}}</span>
+<div class="options-controls">
+  <mat-form-field class="search-bar standard-margin-right" appearance="outline">
+    <mat-select (selectionChange)="updateSelectedEmployee($event.value)"
+                placeholder="{{generalTexts.pickEmployee}}">
+      <mat-option>
+        <ngx-mat-select-search [formControl]="employeeFilterCtrl"
+                               placeholderLabel="{{generalTexts.findResults}}"
+                               noEntriesFoundLabel="'{{generalTexts.noResults}}'"
+                               [enableClearOnEscapePressed]=true
+        >
+        </ngx-mat-select-search>
+      </mat-option>
+      <mat-option></mat-option>
+      <mat-option class="search-bar-option" *ngFor="let employee of filteredEmployees | async" [value]="employee">
+        <span>{{employee.firstName}} {{employee.lastName}} {{"&nbsp;&nbsp;&nbsp;"}}</span>
+        <span>{{employee.username}}</span>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="standard-margin-right" appearance="outline">
+    <mat-label>{{generalTexts.selectDateRange}}</mat-label>
+    <mat-date-range-input [rangePicker]="picker">
+      <input matStartDate [(ngModel)]="startDate" (dateInput)="updateSelectedStartDate($event)">
+      <input matEndDate [(ngModel)]="endDate" (dateInput)="updateSelectedEndDate($event)">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field>
+  <button class="options-button" mat-raised-button (click)="onSubmit()">{{generalTexts.search}}</button>
+</div>

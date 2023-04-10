@@ -1,0 +1,16 @@
+app-tab-menu {
+  margin-bottom: 8px;
+}
+
+app-visit-table {
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+}
+
+app-visit-details {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+}

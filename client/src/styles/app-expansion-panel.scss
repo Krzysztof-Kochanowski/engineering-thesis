@@ -1,0 +1,36 @@
+@import "./theme-variables";
+@import "../styles";
+
+.expansion-panel {
+  margin-top: 0;
+  margin-bottom: 0;
+  border-bottom: rgba(0, 0, 0, 0.12) 1px solid;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.mat-expansion-panel-header {
+  padding: 0 16px;
+}
+
+.expansion-panel-header {
+  display: flex;
+  justify-content: space-between;
+  height: 48px !important;
+}
+
+.expansion-panel {
+  ::ng-deep {
+    .mat-expansion-panel-content .mat-expansion-panel-body {
+      padding: 0 16px 8px;
+    }
+  }
+}
+
+mat-expansion-panel-header mat-grid-list {
+  width: 100%;
+}
+
+.form-row {
+  margin-top: 10px;
+}

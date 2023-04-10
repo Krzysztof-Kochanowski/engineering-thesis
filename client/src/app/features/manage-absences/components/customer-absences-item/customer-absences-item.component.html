@@ -1,0 +1,36 @@
+<ng-template #temp>
+  <mat-expansion-panel class="expansion-panel">
+    <mat-expansion-panel-header class="expansion-panel-header">
+      <mat-panel-title>
+        {{absence.customer.firstName}} {{absence.customer.lastName}} {{absence.customer.organizationName}}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{absence.startDate | date:'dd/MM/YYYY'}}
+        - {{absence.endDate | date:'dd/MM/YYYY'}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>{{generalTexts.editDateRange}}</mat-label>
+          <mat-date-range-input [rangePicker]="picker">
+            <input matStartDate formControlName="startDate" (dateInput)="updateSelectedStartDate($event)">
+            <input matEndDate formControlName="endDate" (dateInput)="updateSelectedEndDate($event)">
+          </mat-date-range-input>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+        <div class="sub-row">
+          <button type="button" class="form-button warn" mat-raised-button [disabled]="loading"
+                  (click)="onDelete()">
+            {{generalTexts.remove}}
+          </button>
+          <button type="submit" class="form-button" mat-raised-button [disabled]="loading">
+            {{generalTexts.save}}
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-expansion-panel>
+</ng-template>

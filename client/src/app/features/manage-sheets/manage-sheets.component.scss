@@ -1,0 +1,10 @@
+:host ::ng-deep app-work-schedule-options .mat-mdc-form-field-subscript-wrapper {
+  display: none !important;
+}
+
+app-work-schedule-table {
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+}

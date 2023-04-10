@@ -1,0 +1,12 @@
+<mat-icon [ngClass]="{
+            'present': visitStatus === status.PRESENT,
+            'absent': visitStatus === status.ABSENT,
+            'cancelled': visitStatus === status.CANCELLED,
+            'absent-employee': visitStatus === status.ABSENT_EMPLOYEE
+          }"
+          matTooltip="{{tooltipText}}"
+          [matTooltipPosition]="'above'"
+          [matTooltipShowDelay]="250"
+>
+  fiber_manual_record
+</mat-icon>

@@ -1,0 +1,41 @@
+@import "../../../../../styles/app-table";
+
+.mat-column-1, .mat-column-2, .mat-column-3, .mat-column-4 {
+  border-right: 1px solid grey;
+}
+
+.mat-column-0 {
+  border-right: 1px solid grey;
+  max-width: 120px;
+  justify-content: right;
+}
+
+.mat-column-1 {
+  min-width: 230px;
+}
+
+.mat-column-2 {
+  max-width: 140px;
+}
+
+.mat-column-3 {
+  width: 160px;
+  max-width: 160px;
+}
+
+.mat-column-4 {
+  max-width: 70px;
+  justify-content: right;
+}
+
+.mat-column-5 {
+  max-width: 50px;
+  border-right: none;
+  justify-content: center;
+  text-align: center;
+}
+
+.select-visit-button {
+  transform: scale(0.8);
+  margin: -10px;
+}

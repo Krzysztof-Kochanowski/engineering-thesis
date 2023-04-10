@@ -1,0 +1,89 @@
+.main-container {
+  position: absolute;
+  inset: 0;
+  height: 100vh;
+}
+
+.main-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+::ng-deep {
+  .sidenav > div.mat-drawer-inner-container {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100%;
+    overflow: auto;
+    width: auto;
+  }
+}
+
+.sidenav-header {
+  top: 0;
+  position: sticky;
+  z-index: 999;
+  padding: 16px;
+  background-color: white;
+}
+
+.sidenav-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.sidenav-buttons {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidenav-footer {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+
+  img {
+    padding: 8px;
+  }
+}
+
+.show-menu-button {
+  margin: 0 6px;
+}
+
+.menu-button {
+  margin-top: 16px;
+  border-radius: 8px;
+}
+
+.menu-button:first-of-type {
+  margin-top: 0;
+}
+
+.menu-button:hover {
+  background-color: whitesmoke;
+}
+
+.menu-button:focus {
+  background-color: whitesmoke;
+}
+
+::ng-deep {
+  .active-route span {
+    font-weight: 500 !important;
+    text-decoration: underline;
+  }
+}
+
+.router-outlet-wrapper {
+  width: 100%;
+  height: 100%;
+}

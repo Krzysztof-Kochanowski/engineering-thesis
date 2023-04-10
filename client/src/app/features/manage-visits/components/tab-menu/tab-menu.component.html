@@ -1,0 +1,19 @@
+<mat-tab-group class="section tab-group" animationDuration="0ms" mat-stretch-tabs="false" mat-align-tabs="start"
+               (selectedTabChange)="onTabChange()" (click)="onTabClick($event)" [(selectedIndex)]="activeTab">
+  <mat-tab *ngFor="let day of daysOfWeek; let index = index" [label]="day + ' ' + (getDateFromDayIndex(index) | date:'MM.dd')?.toString()">
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <span class="calendarTabLabel" (click)="openCalendar()">{{generalTexts.pickADay}} {{this.date.toDate() | date:'MM.dd'}}</span>
+      <button class="select-date-button" #calendarMenuTrigger="matMenuTrigger"
+              [matMenuTriggerFor]="calendarMenu" (menuOpened)="onOpen()">
+      </button>
+      <mat-icon class="select-date-icon">calendar_today</mat-icon>
+      <mat-menu class="drop-calendar" #calendarMenu="matMenu" xPosition="before">
+        <div (click)="$event.stopPropagation()">
+          <mat-calendar #calendar (selectedChange)="date=$event.startOf('day'); updateTab(); updateVisits();" [selected]="date" ></mat-calendar>
+        </div>
+      </mat-menu>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

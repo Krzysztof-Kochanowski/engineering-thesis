@@ -1,0 +1,38 @@
+<h4 class="header-margin">{{generalTexts.addEmployeeAbsenceForm}}</h4>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>{{generalTexts.selectDateRange}}</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate formControlName="startDate" (dateInput)="updateSelectedStartDate($event)">
+        <input matEndDate formControlName="endDate" (dateInput)="updateSelectedEndDate($event)">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+  </div>
+  <div class="form-row">
+    <mat-form-field class="search-bar" appearance="outline">
+      <mat-select formControlName="employee" (selectionChange)="updateSelectedEmployee($event)"
+                  placeholder="{{generalTexts.pickEmployee}}" name="employee">
+        <mat-option>
+          <ngx-mat-select-search
+            [formControl]="employeeFilterCtrl"
+            placeholderLabel="{{generalTexts.findResults}}"
+            noEntriesFoundLabel="{{generalTexts.noResults}}"
+            [enableClearOnEscapePressed]=true
+          >
+          </ngx-mat-select-search>
+        </mat-option>
+        <mat-option class="search-bar-option" *ngFor="let employee of filteredEmployees | async" [value]="employee">
+          <span>{{employee.firstName}} {{employee.lastName}} {{"&nbsp;&nbsp;&nbsp;"}}</span>
+          <span>{{employee.username}}</span>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button class="form-button" mat-raised-button [disabled]="loading">
+      {{generalTexts.add}}
+    </button>
+  </div>
+</form>
+

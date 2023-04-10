@@ -1,0 +1,27 @@
+<div class="fill header-margin">
+  <h4>{{generalTexts.loginForm}}</h4>
+  <div class="logo">
+    <img src="assets/logo.png" alt="logo" width="16" height="16">
+    <span class="logo-text">{{generalTexts.logo}}</span>
+  </div>
+</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <mat-form-field class="fill standard-margin-right" appearance="outline">
+      <mat-label>{{generalTexts.username}}</mat-label>
+      <input type="text" formControlName="username" matInput [placeholder]=generalTexts.username />
+    </mat-form-field>
+  </div>
+  <div class="form-row">
+    <mat-form-field class="fill standard-margin-right" appearance="outline">
+      <mat-label>{{generalTexts.password}}</mat-label>
+      <input type="password" formControlName="password" matInput [placeholder]=generalTexts.password/>
+    </mat-form-field>
+  </div>
+  <div class="form-row submit">
+    <button class="form-button standard-margin-right" mat-raised-button [disabled]="loading">
+      {{generalTexts.login}}
+    </button>
+  </div>
+</form>
+

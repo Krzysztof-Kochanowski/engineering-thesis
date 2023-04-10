@@ -1,0 +1,16 @@
+<mat-accordion class="accordion" *ngIf="visitDetailsList.length > 0; else noVisits;">
+    <ng-container *ngIf="!time; else filtered">
+      <app-visit-details-item *ngFor="let vistitDetails of visitDetailsList" [visitDetails]="vistitDetails" (bySubmit)="byUpdate.emit()"></app-visit-details-item>
+    </ng-container>
+</mat-accordion>
+
+<ng-template #filtered>
+  <ng-container *ngIf="filteredList.length > 0; else noVisits">
+    <app-visit-details-item *ngFor="let vistitDetails of filteredList" [visitDetails]="vistitDetails"
+                            (bySubmit)="byUpdate.emit()"></app-visit-details-item>
+  </ng-container>
+</ng-template>
+
+<ng-template #noVisits>
+  <span class="no-content-text">{{generalTexts.noVisits}}</span>
+</ng-template>

@@ -1,0 +1,28 @@
+<div class="feature-container-wrapper">
+  <div class="feature-container">
+    <div class="container left">
+      <mat-card class="container-card left">
+        <app-customer-absences-options class="section options" *ngIf="activeTab == 0"></app-customer-absences-options>
+        <app-employee-absences-options class="section options" *ngIf="activeTab == 1"></app-employee-absences-options>
+        <mat-tab-group class="section absences-tab-group" animationDuration="0ms" [(selectedIndex)]="activeTab">
+          <div class="subsection">
+            <mat-tab label="Beneficjenci">
+              <app-customer-absences></app-customer-absences>
+            </mat-tab>
+            <mat-tab label="Pracownicy">
+              <app-employee-absences></app-employee-absences>
+            </mat-tab>
+          </div>
+        </mat-tab-group>
+      </mat-card>
+    </div>
+    <div class="container right">
+      <mat-card class="container-card right">
+        <app-add-customer-absence-form class="section form"
+                                       (bySubmit)="refreshCustomerAbsences()"></app-add-customer-absence-form>
+        <app-add-employee-absence-form class="section form"
+                                       (bySubmit)="refreshEmployeeAbsences()"></app-add-employee-absence-form>
+      </mat-card>
+    </div>
+  </div>
+</div>

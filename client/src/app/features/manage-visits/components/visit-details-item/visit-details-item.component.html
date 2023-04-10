@@ -1,0 +1,62 @@
+<ng-template #temp>
+  <mat-expansion-panel class="expansion-panel">
+    <mat-expansion-panel-header class="expansion-panel-header">
+      <mat-panel-title>
+        {{visitDetails.customer.firstName}} {{visitDetails.customer.lastName}}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{visitDetails.visit!.dateTime | date:"HH:mm"}}
+      </mat-panel-description>
+      <mat-panel-description>
+        {{visitDetails.customer.organizationName}}
+      </mat-panel-description>
+      <mat-panel-description>
+        <app-visit-details-status-icon [visitStatus]="visitDetails.status"></app-visit-details-status-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field class="comment-field" appearance="outline">
+        <mat-label>Komentarz</mat-label>
+        <textarea #other matInput formControlName="comment" name="comment"
+                  maxlength="250" placeholder="Opis wizyty..."></textarea>
+        <mat-hint align="end">{{other.value.length}} / 250</mat-hint>
+      </mat-form-field>
+      <div class="form-row">
+        <mat-form-field class="half-width" appearance="outline">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="selectedStatus" name="selectedStatus">
+            <mat-option *ngFor="let status of enumTexts.status" [value]="status">
+              {{status.value}}
+            </mat-option>
+            <mat-select-trigger>
+              {{form.controls['selectedStatus'].value.value}}
+            </mat-select-trigger>
+          </mat-select>
+        </mat-form-field>
+        <div class="sub-row">
+          <mat-form-field class="half-width growing" appearance="outline" *ngIf="isStaff.value">
+            <mat-label>Zastępstwo</mat-label>
+            <mat-select [formControl]="employeeCtrl"
+                        placeholder="{{generalTexts.addSubstitution}}" #singleSelect>
+              <mat-option>
+                <ngx-mat-select-search [formControl]="employeeFilterCtrl"
+                                       placeholderLabel="{{generalTexts.findResults}}"
+                                       noEntriesFoundLabel="'{{generalTexts.noResults}}'"
+                                       [enableClearOnEscapePressed]=true
+                >
+                </ngx-mat-select-search>
+              </mat-option>
+              <mat-option class="search-bar-option" *ngFor="let employee of filteredEmployees | async" [value]="employee.id">
+                <span>{{employee.firstName}} {{employee.lastName}} {{"&nbsp;&nbsp;&nbsp;"}}</span>
+                <span>{{employee.username}}</span>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button class="form-button" mat-raised-button [disabled]="loading">
+            {{generalTexts.save}}
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-expansion-panel>
+</ng-template>

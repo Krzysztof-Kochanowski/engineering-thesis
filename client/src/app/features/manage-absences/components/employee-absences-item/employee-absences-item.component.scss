@@ -1,0 +1,9 @@
+@import "../../../../../styles/app-expansion-panel";
+
+.expansion-panel {
+  ::ng-deep {
+    .mat-expansion-panel-content .mat-expansion-panel-body {
+      padding: 8px 16px;
+    }
+  }
+}

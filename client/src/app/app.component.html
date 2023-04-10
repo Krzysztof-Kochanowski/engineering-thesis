@@ -1,0 +1,51 @@
+<mat-sidenav-container class="main-container" [autosize]="true">
+  <mat-sidenav *ngIf="this.route !== '/' + routes.login" class="sidenav" #sideNav mode="side" [opened]="true">
+    <div class="sidenav-header">
+      <button class="show-menu-button" mat-icon-button (click)="toggleSideNav()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <div class="sidenav-content" *ngIf="showSideNav">
+      <mat-action-list class="sidenav-buttons">
+        <button class="menu-button" mat-list-item [routerLink]="routes.visits" [routerLinkActive]="['active-route']"
+                *ngIf="isTherapist.value">
+          Zarządzanie wizytami
+        </button>
+        <button class="menu-button" mat-list-item [routerLink]="routes.schedule" [routerLinkActive]="['active-route']"
+                *ngIf="isTherapist.value">
+          Plan wizyt
+        </button>
+        <button class="menu-button" mat-list-item [routerLink]="routes.sheets" [routerLinkActive]="['active-route']"
+                *ngIf="isStaff.value">
+          Harmonogramy
+        </button>
+        <button class="menu-button" mat-list-item [routerLink]="routes.absences" [routerLinkActive]="['active-route']"
+                *ngIf="isStaff.value">
+          Nieobecności
+        </button>
+        <button class="menu-button" mat-list-item [routerLink]="routes.reports" [routerLinkActive]="['active-route']"
+                *ngIf="isStaff.value">
+          Raporty
+        </button>
+        <button class="menu-button" mat-list-item [routerLink]="routes.adminPanel" [routerLinkActive]="['active-route']"
+                *ngIf="isStaff.value || isAdmin.value">
+          Panel administracyjny
+        </button>
+        <button class="menu-button" mat-list-item (click)="logout()">
+          Wyloguj
+        </button>
+      </mat-action-list>
+      <div class="sidenav-footer">
+        <img src="assets/logo.png" alt="logo" width="24" height="24">
+        <h1>{{generalTexts.logo}}</h1>
+      </div>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="main-content">
+    <div class="router-outlet-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

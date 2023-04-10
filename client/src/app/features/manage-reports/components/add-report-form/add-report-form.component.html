@@ -1,0 +1,44 @@
+<h4 class="header-margin">{{generalTexts.addReportForm}}</h4>
+Podgląd nagłówka tabeli:
+<table mat-table
+       [dataSource]=[]
+       cdkDropList
+       cdkDropListOrientation="horizontal"
+       (cdkDropListDropped)="drop($event)">
+  <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+    <th class="report-header" mat-header-cell cdkDrag *matHeaderCellDef> {{column}} </th>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+</table>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>{{generalTexts.selectDateRange}}</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate formControlName="startDate" (dateInput)="updateSelectedStartDate($event)">
+        <input matEndDate formControlName="endDate" (dateInput)="updateSelectedEndDate($event)">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+  </div>
+  <div class="form-row">
+    <mat-form-field class="half-width growing" appearance="outline">
+      <mat-label>{{generalTexts.reportOptions}}</mat-label>
+      <mat-select formControlName="reportOptions" name="reportOptions" multiple
+                  (selectionChange)="updateSelectedReportOptions($event)">
+        <mat-option *ngFor="let column of reportOptionPlKeyValue" [value]="column">
+          {{column.value}}
+        </mat-option>
+        <mat-select-trigger>
+          {{valuesToString(form.controls['reportOptions'].value)}}
+        </mat-select-trigger>
+      </mat-select>
+    </mat-form-field>
+    <button class="form-button" mat-raised-button [disabled]="loading">
+      {{generalTexts.add}}
+    </button>
+  </div>
+</form>

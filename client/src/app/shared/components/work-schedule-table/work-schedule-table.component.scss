@@ -1,0 +1,15 @@
+@import "../../../../styles/app-table";
+
+.mat-column-0 {
+  border-right: 1px solid grey;
+  max-width: 120px;
+  justify-content: right;
+}
+
+.mat-column-1, .mat-column-2, .mat-column-3, .mat-column-4, .mat-column-5 {
+  border-right: 1px solid grey;
+}
+
+.mat-column-5 {
+  border-right: none;
+}

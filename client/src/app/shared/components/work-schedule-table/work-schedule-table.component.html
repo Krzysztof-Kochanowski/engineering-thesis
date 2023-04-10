@@ -1,0 +1,68 @@
+<table mat-table [dataSource]="dataSource[0]">
+  <ng-container matColumnDef="0">
+    <mat-header-cell *matHeaderCellDef> {{generalTexts.time}} </mat-header-cell>
+    <mat-cell *matCellDef="let rowIndex = index">
+      <ng-container *ngIf="dataSource[0][rowIndex] as pVisit; else empty">
+        {{pVisit.visitTime}}
+      </ng-container>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="1">
+    <mat-header-cell *matHeaderCellDef> {{dateTexts.dayOfWeekNamesLong[0]}} </mat-header-cell>
+    <mat-cell *matCellDef="let rowIndex = index">
+        <ng-container *ngIf="dataSource[0][rowIndex] as pVisit; else empty">
+          {{pVisit.customer.firstName}} {{pVisit.customer.lastName}} {{pVisit.customer.organizationName}}
+        </ng-container>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="2">
+    <mat-header-cell *matHeaderCellDef> {{dateTexts.dayOfWeekNamesLong[1]}} </mat-header-cell>
+    <mat-cell *matCellDef="let rowIndex = index">
+        <ng-container *ngIf="dataSource[1][rowIndex] as pVisit; else empty">
+          {{pVisit.customer.firstName}} {{pVisit.customer.lastName}} {{pVisit.customer.organizationName}}
+        </ng-container>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="3">
+    <mat-header-cell *matHeaderCellDef> {{dateTexts.dayOfWeekNamesLong[2]}} </mat-header-cell>
+    <mat-cell *matCellDef="let rowIndex = index">
+        <ng-container *ngIf="dataSource[2][rowIndex] as pVisit; else empty">
+          {{pVisit.customer.firstName}} {{pVisit.customer.lastName}} {{pVisit.customer.organizationName}}
+        </ng-container>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="4">
+    <mat-header-cell *matHeaderCellDef> {{dateTexts.dayOfWeekNamesLong[3]}} </mat-header-cell>
+    <mat-cell *matCellDef="let rowIndex = index">
+        <ng-container *ngIf="dataSource[3][rowIndex] as pVisit; else empty">
+          {{pVisit.customer.firstName}} {{pVisit.customer.lastName}} {{pVisit.customer.organizationName}}
+        </ng-container>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="5">
+    <mat-header-cell *matHeaderCellDef> {{dateTexts.dayOfWeekNamesLong[4]}} </mat-header-cell>
+    <mat-cell *matCellDef="let rowIndex = index">
+        <ng-container *ngIf="dataSource[4][rowIndex] as pVisit; else empty">
+          {{pVisit.customer.firstName}} {{pVisit.customer.lastName}} {{pVisit.customer.organizationName}}
+        </ng-container>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row
+    *matRowDef="let row;
+        let even = even;
+        let rowIndex = index;
+        columns: displayedColumns;"
+    [ngClass]="{grey: even}"
+  ></mat-row>
+</table>
+
+<ng-template #empty>
+  -
+</ng-template>

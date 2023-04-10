@@ -1,0 +1,50 @@
+<h4 class="header-margin">{{generalTexts.addUserForm}}</h4>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <mat-form-field class="half-width growing" appearance="outline">
+      <mat-label>{{generalTexts.username}}</mat-label>
+      <input type="text" formControlName="username" matInput [placeholder]=generalTexts.username />
+    </mat-form-field>
+    <mat-form-field class="half-width growing" appearance="outline">
+      <mat-label>{{generalTexts.password}}</mat-label>
+      <input type="password" formControlName="password" matInput [placeholder]=generalTexts.password />
+    </mat-form-field>
+  </div>
+  <div class="form-row">
+    <mat-form-field class="fill" appearance="outline">
+      <mat-select formControlName="employee" placeholder="{{generalTexts.assignEmployee}}" name="employee">
+        <mat-option>
+          <ngx-mat-select-search
+            [formControl]="employeeFilterCtrl"
+            placeholderLabel="{{generalTexts.findResults}}"
+            noEntriesFoundLabel="{{generalTexts.noResults}}"
+            [enableClearOnEscapePressed]=true
+          >
+          </ngx-mat-select-search>
+        </mat-option>
+        <mat-option></mat-option>
+        <mat-option class="search-bar-option" *ngFor="let employee of filteredEmployees | async" [value]="employee">
+          <span>{{employee.firstName}} {{employee.lastName}} {{"&nbsp;&nbsp;&nbsp;"}}</span>
+          <span>{{employee.username}}</span>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="form-row">
+    <mat-form-field class="fill" appearance="outline">
+      <mat-label>{{generalTexts.roles}}</mat-label>
+      <mat-select formControlName="roles" name="roles" multiple (selectionChange)="updateSelectedRoles($event)">
+        <mat-option *ngFor="let role of rolePl | keyvalue: originalOrder" [value]="role" [disabled]="isAdmin(role.key)">
+          {{role.value}}
+        </mat-option>
+        <mat-select-trigger>
+          {{valuesToString(form.controls['roles'].value)}}
+        </mat-select-trigger>
+      </mat-select>
+    </mat-form-field>
+    <button class="form-button" mat-raised-button [disabled]="loading">
+      {{generalTexts.add}}
+    </button>
+  </div>
+</form>
+

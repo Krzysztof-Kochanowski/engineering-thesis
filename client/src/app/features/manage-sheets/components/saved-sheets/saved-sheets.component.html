@@ -1,0 +1,14 @@
+<mat-selection-list #selectionList [multiple]="false" [(ngModel)]="selectedOptions" (ngModelChange)="updateSelectedSheet()">
+  <h4 class="header-margin">{{generalTexts.savedSheets}}</h4>
+  <ng-container *ngIf="sheets.length > 0; else noSheets;">
+    <mat-list-option class="option" *ngFor="let sheet of sheets, let i = index" [value]="sheet">
+      <mat-icon matListItemIcon>insert_drive_file</mat-icon>
+      <div class="option-title" matListItemTitle>{{sheet.fileName}}</div>
+      <div matListItemLine>{{sheet.startDate | date:'dd/MM/YYYY'}} - {{sheet.endDate | date:'dd/MM/YYYY'}}</div>
+    </mat-list-option>
+  </ng-container>
+</mat-selection-list>
+
+<ng-template #noSheets>
+  <span class="no-content-text">{{generalTexts.noSheets}}</span>
+</ng-template>

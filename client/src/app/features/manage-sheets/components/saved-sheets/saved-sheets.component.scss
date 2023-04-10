@@ -1,0 +1,27 @@
+h4 {
+  margin: calc((3rem - 1.5rem)/2) 16px;
+}
+
+.mat-mdc-list-item-icon {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.option {
+  ::ng-deep {
+    .mdc-list-item__content {
+      > .mdc-list-item__primary-text, .mdc-list-item__secondary-text {
+        display: flex;
+        flex: 1;
+      }
+    }
+
+    .mdc-list-item__primary-text {
+      align-items: flex-end;
+      margin-bottom: 0 !important;
+    }
+
+    .mdc-list-item__secondary-text {
+      align-items: flex-start;
+    }
+  }
+}

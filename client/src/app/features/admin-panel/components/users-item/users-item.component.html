@@ -1,0 +1,73 @@
+<ng-template #temp>
+  <mat-expansion-panel class="expansion-panel">
+    <mat-expansion-panel-header class="expansion-panel-header">
+          <mat-panel-title>
+            <mat-icon class="standard-margin-right">account_box</mat-icon>
+            <span class="text-wrapper">{{generalTexts.username}}: {{user.username}}</span>
+          </mat-panel-title>
+          <mat-panel-description>
+            <span class="text-wrapper">{{generalTexts.roles}}:
+              <ng-container *ngIf="user.roles else empty">{{valuesToString(getKeyValueArr(user.roles))}}</ng-container>
+            </span>
+          </mat-panel-description>
+          <mat-panel-description>
+            <span class="text-wrapper">{{generalTexts.firstAndLastName}}:
+              <ng-container *ngIf="user.employee else empty">
+                {{user.employee.firstName}} {{user.employee.lastName}}
+              </ng-container>
+            </span>
+          </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <button type="button" class="form-button" mat-raised-button [disabled]="loading">
+          {{generalTexts.resetPassword}}
+        </button>
+        <mat-form-field class="role-select fill" appearance="outline">
+          <mat-label>{{generalTexts.roles}}</mat-label>
+          <mat-select formControlName="roles" name="roles" multiple (selectionChange)="updateSelectedRoles($event)" #roleSelect>
+            <mat-option *ngFor="let role of rolePl | keyvalue: originalOrder" [value]="role" [disabled]="isAdmin(role.key)">
+              {{role.value}}
+            </mat-option>
+            <mat-select-trigger>
+              {{valuesToString(form.controls['roles'].value)}}
+            </mat-select-trigger>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="search-bar" appearance="outline">
+          <mat-select formControlName="employee" placeholder="{{generalTexts.assignEmployee}}" name="employee" #employeeSelect>
+            <mat-option>
+              <ngx-mat-select-search
+                [formControl]="employeeFilterCtrl"
+                placeholderLabel="{{generalTexts.findResults}}"
+                noEntriesFoundLabel="{{generalTexts.noResults}}"
+                [enableClearOnEscapePressed]=true
+              >
+              </ngx-mat-select-search>
+            </mat-option>
+            <mat-option></mat-option>
+            <mat-option class="search-bar-option" *ngFor="let employee of filteredEmployees | async"
+                        [value]="employee">
+              <span>{{employee.firstName}} {{employee.lastName}} {{"&nbsp;&nbsp;&nbsp;"}}</span>
+              <span>{{employee.username}}</span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="sub-row">
+          <button type="button" class="form-button warn" mat-raised-button [disabled]="loading"
+                  (click)="onDelete()">
+            {{generalTexts.remove}}
+          </button>
+          <button type="submit" class="form-button" mat-raised-button [disabled]="loading">
+            {{generalTexts.save}}
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-expansion-panel>
+</ng-template>
+
+<ng-template #empty>
+  Brak danych
+</ng-template>

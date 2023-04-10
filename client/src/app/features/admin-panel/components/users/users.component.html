@@ -1,0 +1,9 @@
+<ng-container *ngIf="users.length > 0; else noUsers;">
+  <mat-accordion>
+    <app-users-item *ngFor="let user of users" [user]="user"></app-users-item>
+  </mat-accordion>
+</ng-container>
+
+<ng-template #noUsers>
+  <span class="no-content-text">{{generalTexts.noUsers}}</span>
+</ng-template>

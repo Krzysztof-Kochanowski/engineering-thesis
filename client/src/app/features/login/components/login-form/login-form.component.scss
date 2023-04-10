@@ -1,0 +1,32 @@
+.submit {
+  justify-content: end;
+}
+
+.form-button {
+  width: 15%;
+}
+
+.logo-text {
+  align-items: flex-end;
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.fill {
+  justify-content: space-between;
+}
+
+.logo-text, h4 {
+  margin: 0;
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+
+  img {
+    padding: 0 4px 4px 0;
+  }
+}
+

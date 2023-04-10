@@ -1,0 +1,20 @@
+.present {
+  color: green;
+}
+
+.absent {
+  color: indianred;
+}
+
+.cancelled {
+  color: orange;
+}
+
+.absent-employee {
+  color: royalblue;
+}
+
+:host(app-visit-details-status-icon) {
+  display: flex;
+  align-items: center;
+}

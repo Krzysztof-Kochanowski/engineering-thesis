@@ -1,0 +1,29 @@
+@import "../../../styles";
+
+.container-card.left{
+  flex-direction: column;
+}
+
+.absences-tab-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 8px;
+
+  ::ng-deep.mat-mdc-tab-body-wrapper {
+    @extend .section;
+    flex: 1;
+  }
+
+  ::ng-deep.mat-mdc-tab-header {
+    margin-bottom: 8px;
+  }
+}
+
+app-customer-absences {
+  margin-bottom: 20px;
+}
+
+mat-tab-group.absences-tab-group::ng-deep .mat-mdc-tab-body-content {
+  @extend .custom-scrollbar;
+}

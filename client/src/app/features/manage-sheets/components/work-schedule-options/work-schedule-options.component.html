@@ -1,0 +1,25 @@
+<span class="header standard-margin-right">{{generalTexts.workScheduleHeader}}</span>
+<div class="options-controls">
+  <mat-form-field class="search-bar standard-margin-right" appearance="outline">
+    <mat-select (selectionChange)="updateSelectedEmployee($event.value)"
+                placeholder="{{generalTexts.pickEmployee}}" #employeeSelect>
+      <mat-option>
+        <ngx-mat-select-search [formControl]="employeeFilterCtrl"
+                               placeholderLabel="{{generalTexts.findResults}}"
+                               noEntriesFoundLabel="'{{generalTexts.noResults}}'"
+                               [enableClearOnEscapePressed]=true
+        >
+        </ngx-mat-select-search>
+      </mat-option>
+      <mat-option class="search-bar-option" *ngFor="let employee of filteredEmployees | async" [value]="employee">
+        <span>{{employee.firstName}} {{employee.lastName}} {{"&nbsp;&nbsp;&nbsp;"}}</span>
+        <span>{{employee.username}}</span>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button class="options-button" mat-raised-button *ngIf="selectedEmployee; else disabledButton" [routerLink]="['../' + routes.visits, +selectedEmployee.id!]">Przejdź do wizyt</button>
+</div>
+
+<ng-template #disabledButton>
+  <button class="options-button" mat-raised-button [disabled]="true">{{generalTexts.viewVisits}}</button>
+</ng-template>

@@ -1,0 +1,28 @@
+<div role="group" class="time-input-container"
+     [formGroup]="parts"
+     [attr.aria-labelledby]="_formField.getLabelId()"
+     (focusin)="onFocusIn()"
+     (focusout)="onFocusOut($event)">
+  <input class="time-input-element"
+         formControlName="hour"
+         type="text"
+         oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"
+         size="2"
+         maxLength="2"
+         aria-label="Hour"
+         (input)="_handleHourInput(parts.controls.hour, minute)"
+         (focusout)="onInputFocusOut($event.target, parts.controls.hour)"
+         #hour>
+  <span class="time-input-spacer">:</span>
+  <input class="time-input-element"
+         formControlName="minute"
+         type="text"
+         oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"
+         size="2"
+         maxLength="2"
+         aria-label="Minute"
+         (input)="_handleMinuteInput(parts.controls.minute)"
+         (focusout)="onInputFocusOut($event.target, parts.controls.minute)"
+         (keyup.backspace)="autoFocusPrev(parts.controls.minute, hour)"
+         #minute>
+</div>
