@@ -1,7 +1,7 @@
 # Web application allowing management of work schedule in a rehabilitation center
 
 ## About
-Application was made for a Polish enterprise with some work organization problems. Previous system used Excel sheets to plan out visists with customers, which were then printed and distributed among employees (therapists) and customers.
+Application was made for a Polish enterprise with some work organization problems. Previous system used Excel sheets to plan out visits with customers, which were then printed and distributed among employees (therapists) and customers.
 
 Most issues associated with above solution appeared in cases where a customer or employee was absent and employees needed an update about their planned visists for the day. Also, in order to keep track of conducted visits, each employee had to personally create notes which would be collected at the end of the month.
 
@@ -87,8 +87,6 @@ These are configuration files used during application deployment - they should b
 |   |-- ...
 ```
 *Note: a basic Angular component consists of `.html`, `.scss` and `.ts` files.*
-
-
 
 ### server
 Root directory for the Spring application
